@@ -5,7 +5,7 @@ import com.ll.project_13_backend.post.entity.Post;
 
 public interface PostService {
 
-    void createPost(final Post post, final Member member);
+    void createPost(final String title, final String content , final Member member);
 
     void findPost(final Long postId);
 
