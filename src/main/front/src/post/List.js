@@ -1,7 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-
 const List = () => {
   const [list, setList] = useState([]);
 
@@ -35,6 +34,9 @@ const List = () => {
               <td>{post.id}</td>
               <td>{post.title}</td>
               <td>{post.content}</td>
+              <td>{post.createdDate}</td>
+              <td>{post.member.userName}</td>
+
             </tr>
           ))}
         </tbody>
