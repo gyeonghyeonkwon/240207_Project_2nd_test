@@ -11,9 +11,9 @@ public interface PostService {
     //조회
     PostDto findPost(final Long postId);
     //수정
-    void updatePost(final PostDto postDto , final Long id );
+    void updatePost(final PostDto postDto , final Long postId );
     //삭제
-    void deletePost(final Long id);
+    void deletePost(final Long postId);
     //목록
     List<PostDto> listPost();
 
@@ -28,6 +28,7 @@ public interface PostService {
                 .member(post.getMember())
                 .createdDate(post.getCreatedDate())
                 .modifiedDate(post.getModifiedDate())
+                .commentList(post.getCommentList())
                 .build();
 
 
@@ -41,6 +42,7 @@ public interface PostService {
                 .title(postDto.getTitle())
                 .content(postDto.getContent())
                 .member(postDto.getMember())
+                .commentList(postDto.getCommentList())
                 .build();
     }
 }

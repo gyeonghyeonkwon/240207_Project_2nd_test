@@ -39,9 +39,9 @@ public class PostServiceImpl implements PostService {
     }
 
     @Transactional
-    public void updatePost(final PostDto postDto , final Long id) {
+    public void updatePost(final PostDto postDto , final Long postId) {
 
-        Post post = postRepository.findById(id)
+        Post post = postRepository.findById(postId)
                 .orElseThrow(() -> new EntityNotFoundException(ErrorCode.ENTITY_NOT_FOUND));
 
         post.setTitle(postDto.getTitle());
@@ -53,9 +53,9 @@ public class PostServiceImpl implements PostService {
     }
 
     @Transactional
-    public void deletePost(final Long id) {
+    public void deletePost(final Long postId) {
 
-        postRepository.deleteById(id);
+        postRepository.deleteById(postId);
     }
 
     public List<PostDto> listPost() {
@@ -66,6 +66,7 @@ public class PostServiceImpl implements PostService {
                         .title(post.getTitle())
                         .content(post.getContent())
                         .member(post.getMember())
+                        .commentList(post.getCommentList())
                         .createdDate(post.getCreatedDate())
                         .modifiedDate(post.getModifiedDate())
                         .build())

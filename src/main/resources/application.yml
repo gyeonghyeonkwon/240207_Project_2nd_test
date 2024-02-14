@@ -9,7 +9,7 @@ spring:
         web-allow-others: true
 
   datasource:
-    url:  jdbc:h2:tcp://127.0.0.1/~/project
+    url:  jdbc:h2:tcp://localhost/~/project
     username: sa
     password:
     driver-class-name: org.h2.Driver

@@ -31,7 +31,7 @@ class PostControllerTest {
 
         resultActions
                 .andExpect(status().isOk())
-                .andExpect(handler().handlerType(PostController.class))
+                .andExpect(handler().handlerType(PostController.class)) ad
                 .andExpect(handler().methodName("getPostList"))
                 .andExpect(jsonPath("$.id", is(1)))
                 .andExpect(jsonPath("$.title", is("Test Post Title")));
