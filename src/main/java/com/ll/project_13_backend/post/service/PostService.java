@@ -7,13 +7,13 @@ import java.util.List;
 
 public interface PostService {
     //생성
-    Long createPost(final PostDto postDto );
+    Long createPost(final PostDto postDto);
     //조회
     PostDto findPost(final Long postId);
     //수정
-    void updatePost(final PostDto postDto);
+    void updatePost(final PostDto postDto , final Long id );
     //삭제
-    void deletePost(final Long postId);
+    void deletePost(final Long id);
     //목록
     List<PostDto> listPost();
 

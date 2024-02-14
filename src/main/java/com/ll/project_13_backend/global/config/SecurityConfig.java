@@ -32,7 +32,7 @@ public class SecurityConfig {
 
         http.authenticationManager(authenticationManager);
 
-        http
+        http.csrf().disable() //삭제 예정
                 .formLogin(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests((authorizeHttpRequests) -> authorizeHttpRequests
                         .requestMatchers(new AntPathRequestMatcher("/**")).permitAll())

@@ -75,7 +75,7 @@ class PostServiceTest {
          post.setContent("호호2"); //내용 변경
          PostDto postDto1 = postService.toDto(post); // 엔티티 → dto 로 변경
 
-        postService.updatePost(postDto1); // 실제 작성 메서드
+        postService.updatePost(postDto1 , post.getId()); // 실제 작성 메서드
 
         assertThat(postDto.getTitle()).isEqualTo("하하"); //기존 데이터
         assertThat(post.getTitle()).isEqualTo("하하2");

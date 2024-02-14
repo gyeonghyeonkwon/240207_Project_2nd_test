@@ -2,6 +2,7 @@ package com.ll.project_13_backend.post.dto;
 
 
 import com.ll.project_13_backend.member.entity.Member;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -18,8 +19,9 @@ public class PostDto {
 
    private Long id;
 
-    private String title;
-
+   @NotBlank
+   private String title;
+   @NotBlank
     private String content;
 
     private Member member;

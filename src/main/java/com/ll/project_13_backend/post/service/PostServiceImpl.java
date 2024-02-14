@@ -1,5 +1,7 @@
 package com.ll.project_13_backend.post.service;
 
+import com.ll.project_13_backend.global.exception.EntityNotFoundException;
+import com.ll.project_13_backend.global.exception.ErrorCode;
 import com.ll.project_13_backend.post.dto.PostDto;
 import com.ll.project_13_backend.post.entity.Post;
 import com.ll.project_13_backend.post.repository.PostRepository;
@@ -19,8 +21,8 @@ import java.util.stream.Collectors;
 public class PostServiceImpl implements PostService {
 
     private final PostRepository postRepository;
-    @Transactional
-    public Long createPost(final PostDto postDto) {
+
+    public Long createPost(final PostDto postDto ) {
 
         Post post = toEntity(postDto); //@service 메서드 에 선언
 
@@ -31,28 +33,29 @@ public class PostServiceImpl implements PostService {
     @Override
     public PostDto findPost(final Long postId) {
         Post post = postRepository.findById(postId)
-                .orElseThrow(() -> new RuntimeException("글을 찾을수 없다."));
+                .orElseThrow(() -> new EntityNotFoundException(ErrorCode.ENTITY_NOT_FOUND));
 
         return toDto(post); //엔티티 DTO 로 변환
     }
 
     @Transactional
-    public void updatePost(final PostDto postDto) {
+    public void updatePost(final PostDto postDto , final Long id) {
 
-        Post post = postRepository.findById(postDto.getId())
-                .orElseThrow(() -> new RuntimeException("글을 찾을수 없다."));
+        Post post = postRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException(ErrorCode.ENTITY_NOT_FOUND));
 
-        post.setTitle(post.getTitle());
-        post.setContent(post.getContent());
+        post.setTitle(postDto.getTitle());
+        post.setContent(postDto.getContent());
 
-        postRepository.save(post);
+       postRepository.save(post);
+
 
     }
 
     @Transactional
-    public void deletePost(final Long postId) {
+    public void deletePost(final Long id) {
 
-        postRepository.deleteById(postId);
+        postRepository.deleteById(id);
     }
 
     public List<PostDto> listPost() {
@@ -62,6 +65,7 @@ public class PostServiceImpl implements PostService {
                         .id(post.getId())
                         .title(post.getTitle())
                         .content(post.getContent())
+                        .member(post.getMember())
                         .createdDate(post.getCreatedDate())
                         .modifiedDate(post.getModifiedDate())
                         .build())
