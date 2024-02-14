@@ -1,17 +1,46 @@
 package com.ll.project_13_backend.post.service;
 
-import com.ll.project_13_backend.member.entity.Member;
+import com.ll.project_13_backend.post.dto.PostDto;
 import com.ll.project_13_backend.post.entity.Post;
 
+import java.util.List;
+
 public interface PostService {
+    //생성
+    Long createPost(final PostDto postDto );
+    //조회
+    PostDto findPost(final Long postId);
+    //수정
+    void updatePost(final PostDto postDto);
+    //삭제
+    void deletePost(final Long postId);
+    //목록
+    List<PostDto> listPost();
 
-    void createPost(final String title, final String content , final Member member);
 
-    void findPost(final Long postId);
+    // 엔티티 → dto
+    default PostDto toDto(Post post) {
 
-    void  updatePost(final Long postId, final Post post, final Member member);
+        return PostDto.builder()
+                .id(post.getId())
+                .title(post.getTitle())
+                .content(post.getContent())
+                .member(post.getMember())
+                .createdDate(post.getCreatedDate())
+                .modifiedDate(post.getModifiedDate())
+                .build();
 
-    void deletePost(final Long postId, final Member member);
 
+    }
 
+    // dto → 엔티티
+    default Post toEntity(PostDto postDto) {
+
+        return Post.builder()
+                .id(postDto.getId())
+                .title(postDto.getTitle())
+                .content(postDto.getContent())
+                .member(postDto.getMember())
+                .build();
+    }
 }

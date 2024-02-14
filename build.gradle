@@ -71,6 +71,11 @@ dependencies {
 
     // 테스트
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.projectlombok:lombok:1.18.30'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.30'
+
+    //assertThat
+    testImplementation 'org.assertj:assertj-core:3.24.2'
 }
 
 

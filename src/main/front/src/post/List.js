@@ -36,7 +36,7 @@ const List = () => {
               <td>{post.content}</td>
               <td>{post.createdDate}</td>
               <td>{post.member.userName}</td>
-
+              <td>{post.member.nickName}</td>
             </tr>
           ))}
         </tbody>
